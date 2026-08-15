@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/proto/">
+    <File Path="serviceCode.proto" />
+  </Folder>
+  <Project Path="Client/Client.csproj" />
+  <Project Path="Server/Server.csproj" />
+</Solution>
