@@ -1,0 +1,23 @@
+### Compra normal — debe APROBAR
+POST https://localhost:7100/api/authorizations
+Content-Type: application/json
+
+{ "account": "EC0000000001", "cardToken": "tok_9911", "amountMinor": 8000,
+  "merchant": "SUPERMAXI", "country": "EC", "channel": "POS" }
+
+### Fondos insuficientes — cuenta con $8.00
+POST https://localhost:7100/api/authorizations
+Content-Type: application/json
+
+{ "account": "EC0000000003", "cardToken": "tok_9911", "amountMinor": 50000,
+  "merchant": "SUPERMAXI", "country": "EC", "channel": "POS" }
+
+### Bloqueo por fraude — comercio en lista negra
+POST https://localhost:7100/api/authorizations
+Content-Type: application/json
+
+{ "account": "EC0000000002", "cardToken": "tok_9911", "amountMinor": 150000,
+  "merchant": "TIENDA SOSPECHOSA", "country": "XX", "channel": "ECOM" }
+
+### Benchmark gRPC vs REST
+GET https://localhost:7100/api/benchmark?n=500

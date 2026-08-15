@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcBank.Contracts";
+package banking.ledger.v1;
+
+// Servicio de saldos. Es el servicio mas llamado de un banco:
+// lo consume la app, la web, el cajero, el call center y el switch.
+service Ledger {
+  rpc GetBalance (BalanceRequest) returns (BalanceReply);
+  rpc Reserve    (ReserveRequest) returns (ReserveReply);
+}
+
+message BalanceRequest { string account = 1; }
+
+message BalanceReply {
+  string account         = 1;
+  int64  available_minor = 2;
+  string currency        = 3;
+  bool   found           = 4;
+}
+
+message ReserveRequest {
+  string account      = 1;
+  int64  amount_minor = 2;
+  string reference    = 3;
+}
+
+message ReserveReply {
+  bool   reserved            = 1;
+  int64  remaining_minor     = 2;
+  string reason              = 3;
+}

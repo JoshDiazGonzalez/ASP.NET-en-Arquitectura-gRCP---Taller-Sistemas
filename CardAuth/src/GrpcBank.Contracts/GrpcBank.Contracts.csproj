@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>GrpcBank.Contracts</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="$(ProtobufVersion)" />
+    <PackageReference Include="Grpc.Core.Api" Version="$(GrpcVersion)" />
+    <PackageReference Include="Grpc.Tools" Version="$(GrpcVersion)">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!-- "Both" genera la clase base del servidor Y el stub del cliente.
+       Este proyecto es EL CONTRATO: en un banco real se publica como
+       paquete NuGet interno. -->
+  <ItemGroup>
+    <Protobuf Include="Protos\*.proto" GrpcServices="Both" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <RootNamespace>GrpcBank.FraudService</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="$(GrpcVersion)" />
+    <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="$(GrpcVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GrpcBank.Contracts\GrpcBank.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

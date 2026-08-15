@@ -1,0 +1,19 @@
+<Project>
+
+  <!-- Propiedades comunes a los 4 proyectos.
+       Cambiar aqui afecta a toda la solucion. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <!-- Version unica de los paquetes gRPC. Si en el futuro sale una
+       version nueva, se cambia SOLO aqui. -->
+  <PropertyGroup>
+    <GrpcVersion>2.83.0</GrpcVersion>
+    <ProtobufVersion>3.35.1</ProtobufVersion>
+  </PropertyGroup>
+
+</Project>

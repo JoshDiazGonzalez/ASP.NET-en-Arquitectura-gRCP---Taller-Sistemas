@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcBank.Contracts";
+package banking.fraud.v1;
+
+// Servicio de scoring de riesgo. Se invoca UNA VEZ POR TRANSACCION,
+// en linea, con el cliente esperando. Es el caso tipico de gRPC unary.
+service FraudScoring {
+  rpc Score (ScoreRequest) returns (ScoreReply);
+}
+
+message ScoreRequest {
+  string card_token   = 1;   // nunca el PAN real, siempre un token
+  int64  amount_minor = 2;   // centavos, entero exacto. Nunca double.
+  string merchant     = 3;
+  string country      = 4;
+  string channel      = 5;   // POS, ECOM, ATM
+}
+
+message ScoreReply {
+  int32  risk_score = 1;     // 0 = seguro, 100 = fraude casi seguro
+  bool   block      = 2;
+  string reason     = 3;
+  int32  latency_ms = 4;     // cuanto tardo el modelo (para el demo)
+}
