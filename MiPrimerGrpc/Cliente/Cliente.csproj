@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MiPrimerGrpc.Cliente</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="$(ProtobufVersion)" />
+    <PackageReference Include="Grpc.Net.Client" Version="$(GrpcVersion)" />
+    <PackageReference Include="Grpc.Tools" Version="$(GrpcVersion)">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!-- ============================================================
+       LA IDEA CENTRAL DE TODO gRPC ESTA EN ESTAS 3 LINEAS:
+
+       El cliente NO copia el .proto. Apunta AL MISMO archivo del
+       servidor. Un solo contrato, dos compilaciones distintas.
+
+       GrpcServices="Client" -> genera solo el stub del cliente.
+       Link=...              -> hace que se vea ordenado en la
+                                carpeta Protos del Explorador.
+
+       Si el servidor cambia el .proto, este proyecto DEJA DE
+       COMPILAR. Ese es el punto.
+       ============================================================ -->
+  <ItemGroup>
+    <Protobuf Include="..\Servidor\Protos\saludos.proto"
+              GrpcServices="Client"
+              Link="Protos\saludos.proto" />
+  </ItemGroup>
+
+</Project>

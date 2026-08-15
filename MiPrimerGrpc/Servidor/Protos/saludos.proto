@@ -1,0 +1,41 @@
+// =====================================================================
+//  EL CONTRATO
+//  Este archivo lo compilan LOS DOS proyectos: Servidor y Cliente.
+//  De aqui salen, automaticamente, todas las clases de C#.
+// =====================================================================
+
+syntax = "proto3";                        // version del lenguaje protobuf
+
+option csharp_namespace = "MiPrimerGrpc"; // namespace de las clases generadas
+package saludos.v1;                       // agrupa los tipos y evita choques
+
+// -----------------------------------------------------------------
+// service  ->  en el SERVIDOR genera la clase base SaludadorBase
+//              en el CLIENTE  genera la clase   SaludadorClient
+// -----------------------------------------------------------------
+service Saludador {
+  // rpc = un metodo remoto.
+  //   Saludar        -> nombre del metodo
+  //   SaludoRequest  -> lo que se envia
+  //   SaludoReply    -> lo que se recibe
+  rpc Saludar (SaludoRequest) returns (SaludoReply);
+}
+
+// -----------------------------------------------------------------
+// message  ->  genera una clase de C# normal, con propiedades.
+//
+// OJO con los numeros (= 1, = 2): NO son valores por defecto.
+// Son el IDENTIFICADOR del campo. Protobuf envia por la red ese
+// numero en lugar del nombre, y por eso el mensaje es tan pequeno.
+// Nunca los reutilices ni los cambies: SON el contrato real.
+// -----------------------------------------------------------------
+message SaludoRequest {
+  string nombre = 1;   // -> public string Nombre { get; set; }
+  int32  veces  = 2;   // -> public int Veces { get; set; }
+}
+
+message SaludoReply {
+  string mensaje      = 1;   // -> Mensaje
+  string atendido_por = 2;   // snake_case aqui  ->  AtendidoPor en C#
+  int32  milisegundos = 3;   // -> Milisegundos
+}

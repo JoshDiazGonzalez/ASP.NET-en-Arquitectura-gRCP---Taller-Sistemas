@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <RootNamespace>MiPrimerGrpc</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="$(GrpcVersion)" />
+  </ItemGroup>
+
+  <!-- ESTA linea es la que genera el codigo.
+       GrpcServices="Server" -> genera solo la clase base del servidor. -->
+  <ItemGroup>
+    <Protobuf Include="Protos\saludos.proto" GrpcServices="Server" />
+  </ItemGroup>
+
+</Project>

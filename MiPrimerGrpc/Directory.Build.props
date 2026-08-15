@@ -1,0 +1,16 @@
+<Project>
+
+  <!-- Propiedades comunes a los dos proyectos.
+       Si solo tienes .NET 9, cambia net10.0 por net9.0 AQUI. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GrpcVersion>2.83.0</GrpcVersion>
+    <ProtobufVersion>3.35.1</ProtobufVersion>
+  </PropertyGroup>
+
+</Project>
