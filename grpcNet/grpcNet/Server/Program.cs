@@ -1,9 +1,13 @@
-﻿const int Port = 5000;
+﻿using Server;
+using Vaxi;
+
+const int Port = 5000;
 Grpc.Core.Server server = null;
 try 
 {
     server = new Grpc.Core.Server()
     {
+        Services = {PersonaService.BindService(new PersonaServiceIml())},
         Ports = { new Grpc.Core.ServerPort("localhost", Port, Grpc.Core.ServerCredentials.Insecure)}
     };
     server.Start();

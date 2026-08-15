@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package vaxi;
+
+message Persona{
+	string nombre = 1;
+	string apellido = 2;
+	string email = 3;
+}
+
+message PersonaRequest{
+	Persona persona = 1;
+}
+
+message PersonaResponse{
+	Persona resultado = 1;
+	string Mensaje = 2;
+}
+
+service PersonaService{
+	rpc RegistrarPersona(PersonaRequest) returns (PersonaResponse){}
+}

@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/proto/">
+    <File Path="persona.proto" />
     <File Path="serviceCode.proto" />
   </Folder>
   <Project Path="Client/Client.csproj" />
